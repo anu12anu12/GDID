@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="butonColot">#54b9b2</color>
+    <color name="loginbackground">#3D4356</color>
+    <color name="loginbox">#a9ccc8</color>
+    <color name="logintextcolor">#3A4555</color>
+    <color name="dashboardbgblue">#4169E1</color>
+    <color name="actionbarBG">#f85659</color>
+    <color name="topHeaderBottomViewBG">#d05a59</color>
+    <color name="ordernumbertextColor">#2e6c9b</color>
+    <color name="white">#FFFFFF</color>
+    <color name="detailsscreenbg">#C0D8D6</color>
+    <color name="detailscolonebg">#81accb</color>
+    <color name="viewmaerialbtn">#90d6d1</color>
+    <color name="drawerbg">#658fbb</color>
+    <color name="danger">#da5858</color>
+    <color name="safe">#27b04f</color>
+    <color name="acceptrejectbutton">#4cb4a8</color>
+
+</resources>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:id="@+id/listitemMainLayoutID"
+    android:layout_height="match_parent" android:minHeight="50dp">
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:background="@color/detailscolonebg"
+            android:gravity="center_vertical"
+            android:layout_weight="0.40"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:minHeight="50dp"
+            android:textColor="@color/white"
+            />
+        <Button
+            android:text="@string/str_view_materiallist"
+            android:gravity="center_vertical|center_horizontal"
+            android:layout_weight="0.60"
+            android:textColor="@color/white"
+            android:background="@color/loginbox"
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:id="@+id/viewMaterialsListOptionID"
+            android:layout_column="2"
+            android:layout_marginLeft="10dp"
+
+            />
+
+    </TableRow>
+</TableLayout>

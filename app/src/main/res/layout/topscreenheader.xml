@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="fill_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/headerID"
+        android:src="@drawable/topheader"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/login_margin_left"
+        android:layout_marginStart="@dimen/login_margin_left"
+        android:layout_marginEnd="@dimen/login_margin_right"
+        android:layout_marginRight="@dimen/login_margin_right" />
+
+    <RelativeLayout android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/topheader_botomview_height"
+        android:background="@color/topHeaderBottomViewBG">
+
+        <TextView
+        android:id="@+id/userID"
+        android:textStyle="bold"
+        android:layout_centerVertical="true" android:layout_alignParentLeft="true"
+        android:layout_width="wrap_content" android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_height="wrap_content" style="@style/AppMediumText"/>
+
+
+        <TextView
+            android:id="@+id/logoutID"
+            android:gravity="end"
+            android:textStyle="bold"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_centerVertical="true" android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/AppMediumText"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

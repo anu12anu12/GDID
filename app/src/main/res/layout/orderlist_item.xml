@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:id="@+id/listitemMainLayoutID"
+    android:layout_height="match_parent" android:minHeight="50dp">
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:textColor="@color/dashboardbgblue"
+            android:text="@string/str_orderlist"
+            android:gravity="center_vertical|center_horizontal"
+            android:textStyle="bold"
+            android:layout_weight="0.40"
+            android:id="@+id/orderNumberId"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:minHeight="50dp"
+            />
+        <TextView
+            android:gravity="center_vertical"
+            android:layout_weight="0.60"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/orderStatusId"
+            android:layout_column="2"
+            />
+
+</TableRow>
+</TableLayout>

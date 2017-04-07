@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent" android:layout_height="fill_parent" android:orientation="vertical">
+    <include android:id="@+id/headerID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/topscreenheader">
+    </include>
+    <TextView
+        android:text="@string/str_materiallist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/AppMediumText"
+        android:textStyle="bold"
+        android:textColor="@color/dashboardbgblue"
+        android:layout_marginLeft="@dimen/buglist_listitem_margin"
+        android:layout_marginStart="@dimen/buglist_listitem_margin"
+        android:layout_marginRight="@dimen/buglist_listitem_margin"
+        android:layout_marginEnd="@dimen/buglist_listitem_margin"
+
+        />
+
+    <ListView
+        android:layout_marginLeft="@dimen/buglist_listitem_margin"
+        android:layout_marginStart="@dimen/buglist_listitem_margin"
+        android:layout_marginRight="@dimen/buglist_listitem_margin"
+        android:layout_marginEnd="@dimen/buglist_listitem_margin"
+        android:id="@+id/materialListID"
+        android:layout_below="@+id/headerID"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </ListView>
+
+
+</LinearLayout>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include android:id="@+id/headerID"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        layout="@layout/topscreenheader">
+    </include>
+
+    <include android:layout_below="@+id/headerID"
+        android:background="@color/loginbox"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginLeft="@dimen/login_margin_left"
+        android:layout_marginStart="@dimen/login_margin_left"
+        android:layout_marginEnd="@dimen/login_margin_right"
+        android:layout_marginRight="@dimen/login_margin_right"
+        layout="@layout/activity_login">
+    </include>
+
+</RelativeLayout>
+</ScrollView>

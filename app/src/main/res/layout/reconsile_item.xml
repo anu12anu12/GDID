@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:id="@+id/listitemMainLayoutID"
+    android:background="@color/detailsscreenbg"
+    android:layout_height="match_parent" android:minHeight="50dp">
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            style="@style/AppMediumText"
+            android:gravity="left"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:id="@+id/orderKeyID"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:text="@string/str_ordernumberwithcolon"
+            />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            style="@style/AppSmallText"
+            android:gravity="center_vertical|center_horizontal"
+            android:layout_weight="0.50"
+            android:id="@+id/materialListCountID"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:text="@string/str_materiallistcount"
+            />
+        <TextView
+            style="@style/AppSmallText"
+            android:gravity="center_vertical|center_horizontal"
+            android:layout_weight="0.50"
+            android:id="@+id/scanMaterialListCountID"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_column="2"
+            android:text="@string/str_scannedmateriallistcount"
+
+            />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <Button
+            style="@style/AppSmallText"
+            android:gravity="center_vertical|center_horizontal"
+            android:layout_weight="0.50"
+            android:id="@+id/rejectID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:text="@string/str_reject"
+            android:layout_margin="10dp"
+            android:background="@color/acceptrejectbutton"
+            />
+        <Button
+            android:layout_margin="10dp"
+            style="@style/AppSmallText"
+            android:gravity="center_vertical|center_horizontal"
+            android:layout_weight="0.50"
+            android:id="@+id/acceptID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="2"
+            android:text="@string/str_accept"
+            android:background="@color/acceptrejectbutton"
+            />
+
+    </TableRow>
+</TableLayout>

@@ -1,0 +1,76 @@
+<resources>
+    <string name="app_name">GDID</string>
+    <!-- Navigation Drawer menu labels -->
+    <string name="nav_dashboard">Home</string>
+    <string name="nav_buglist">Defect List</string>
+    <string name="nav_order_list">Order List</string>
+    <string name="nav_settings">Scan Barcode</string>
+
+    <!-- Toolbar titles when navigation menu item is selected -->
+    <string-array name="nav_item_activity_titles">
+        <item>Home</item>
+        <item>Defect List</item>
+        <item>Order List</item>
+        <item>Scan Barcode</item>
+    </string-array>
+
+    <string name="str_logout"><u>Logout</u></string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="str_welcome">Welcome!</string>
+    <string name="str_updatedTime">Last updated : 05/01/2016</string>
+
+    <string name="str_buglist">Bug List</string>
+    <string name="str_orderlist">Order List</string>
+    <string name="str_orderdetail">Order Details</string>
+    <string name="str_defectdetail">Defect Details</string>
+
+    <string name="str_settings">Settings</string>
+    <string name="str_loginlabel1">Login to your account</string>
+    <string name="str_emailhint">Enter Email</string>
+    <string name="str_passwordhint">Enter Password</string>
+    <string name="title_activity_login">Sign in</string>
+    <string name="str_view_materiallist">View Material List</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Enter Email</string>
+    <string name="prompt_password">Enter Password</string>
+    <string name="action_sign_in">LOGIN</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_invalid_email_and_password">Email and password does not match</string>
+
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="str_rememberme">Remember me</string>
+    <string name="action_bar_heading">MATERIAL MANAGEMENT</string>
+    <string name="str_hello">Hello</string>
+    <string name="str_dashboard">Dashboard</string>
+    <string name="str_defectlist">Defect List</string>
+    <string name="str_defecttitle">Defect Title</string>
+    <string name="str_defectstatus">Defect Status</string>
+    <string name="str_defectnumber">Defect Number</string>
+    <string name="str_orderstatus">Order Status</string>
+    <string name="str_ordernumber">Order Number</string>
+    <string name="str_orderdetailsattrskey">Order Details Attributes</string>
+    <string name="str_orderdetailsattrsval">Order Details Attribute\'s Value</string>
+    <string name="str_defectdetailsattrskey">Defect Details Attributes</string>
+    <string name="str_defectdetailsattrsval">Defect Details Attribute\'s Value</string>
+    <string name="str_materiallist">Material List</string>
+    <string name="str_materialdesc">Material Description</string>
+    <string name="str_barcode">Barcode</string>
+    <string name="str_quantity">Quantity</string>
+    <string name="str_scanbarcode">Scan Barcode</string>
+    <string name="action_reconsile">Reconsile</string>
+    <string name="str_reconsile">Reconsile</string>
+    <string name="str_ordernumberwithcolon">Order Number :</string>
+    <string name="str_materiallistcount">Material List Count :</string>
+    <string name="str_scannedmateriallistcount">Scanned Material Count :</string>
+    <string name="str_accept">Accept</string>
+    <string name="str_reject">Reject</string>
+
+</resources>
