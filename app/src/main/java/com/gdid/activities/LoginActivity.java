@@ -5,8 +5,11 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.ActionBar;
 import android.app.LoaderManager.LoaderCallbacks;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.Loader;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -28,6 +31,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.gdid.com.gdid.datamodel.BugData;
+import com.gdid.com.gdid.datamodel.DashBoardData;
+import com.gdid.com.gdid.services.SyncService;
+import com.gdid.com.gdid.utils.GDIDConstants;
 import com.gdid.material_management.R;
 
 import org.w3c.dom.Text;
@@ -64,6 +71,40 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
+    private DataReceiver mDataReceiver;
+
+    private class DataReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            showProgress(false);
+            ArrayList<DashBoardData> dashBoardDataArrayList = intent.getParcelableArrayListExtra(GDIDConstants.KEY_DASHBOARD_DATA);
+            ArrayList<BugData> bugDataArrayList = intent.getParcelableArrayListExtra(GDIDConstants.KEY_BUGLIST);
+
+            Intent mainActivityIntent = new Intent();
+            mainActivityIntent.putParcelableArrayListExtra(GDIDConstants.KEY_DASHBOARD_DATA, dashBoardDataArrayList);
+            mainActivityIntent.putParcelableArrayListExtra(GDIDConstants.KEY_BUGLIST, bugDataArrayList);
+
+            mainActivityIntent.setClass(LoginActivity.this, MainActivity.class);
+            startActivity(mainActivityIntent);
+            finish();
+        }
+    }
+
+    private void registerReceiver() {
+        if (mDataReceiver == null) {
+            mDataReceiver = new DataReceiver();
+        }
+        registerReceiver(mDataReceiver, new IntentFilter(GDIDConstants.ACTION_DASHBOARD_RECEIVER));
+    }
+
+    private void unRegisterReceiver() {
+        if (mDataReceiver != null) {
+            unregisterReceiver(mDataReceiver);
+            mDataReceiver = null;
+        }
+    }
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -345,13 +386,16 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         @Override
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
-            showProgress(false);
+//            showProgress(false);
 
             if (success) {
-                Intent intent = new Intent();
-                intent.setClass(LoginActivity.this, MainActivity.class);
-                LoginActivity.this.startActivity(intent);
-                finish();
+                registerReceiver();
+                startSyncService();
+
+//                Intent intent = new Intent();
+//                intent.setClass(LoginActivity.this, MainActivity.class);
+//                LoginActivity.this.startActivity(intent);
+//                finish();
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
                 mPasswordView.requestFocus();
@@ -363,6 +407,18 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             mAuthTask = null;
             showProgress(false);
         }
+    }
+
+    private void startSyncService() {
+        Intent syncIntent = new Intent();
+        syncIntent.setClass(this, SyncService.class);
+        getApplicationContext().startService(syncIntent);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unRegisterReceiver();
     }
 }
 

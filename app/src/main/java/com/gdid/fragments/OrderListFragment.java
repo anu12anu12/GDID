@@ -163,6 +163,9 @@ public class OrderListFragment extends Fragment implements View.OnClickListener,
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int aPosition, long l) {
+        if (aPosition == 0)
+            return;
+
         Intent loginIntent = new Intent();
         loginIntent.setClass(getActivity(), OrderDetailsActivity.class);
         OrderData orderData = mOrderList.get((aPosition - 1));

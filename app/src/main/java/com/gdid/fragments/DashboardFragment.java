@@ -1,8 +1,10 @@
 package com.gdid.fragments;
 
 import android.app.Fragment;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -19,6 +21,7 @@ import android.widget.TextView;
 
 import com.gdid.activities.LoginActivity;
 import com.gdid.com.gdid.datamodel.DashBoardData;
+import com.gdid.com.gdid.utils.GDIDConstants;
 import com.gdid.material_management.R;
 
 import java.util.ArrayList;
@@ -31,11 +34,29 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
     private DashboardAdapter mAdapter;
     private ArrayList<DashBoardData> mDashBoardDataList;
     private String mUserName;
+    private RelativeLayout mProgressBar;
+    private class DashBoardDataReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            ArrayList<DashBoardData> dashBoardDataArrayList = intent.getParcelableArrayListExtra(GDIDConstants.KEY_DASHBOARD_DATA);
+            if (dashBoardDataArrayList != null) {
+                mDashBoardDataList = dashBoardDataArrayList;
+//                mProgressBar.setVisibility(View.GONE);
+
+                mAdapter.notifyDataSetChanged();
+
+            }
+        }
+    }
+    private DashBoardDataReceiver mDashBoardReceiver = new DashBoardDataReceiver();
     public DashboardFragment() {
     }
 
-    private void getDashBoardData() {
+    private void getUserName() {
         mUserName = "Neo";
+
+    }
+    private void getDashBoardData() {
         mDashBoardDataList = new ArrayList<DashBoardData>();
 
         DashBoardData dashBoardData1 = new DashBoardData();
@@ -64,13 +85,34 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
         mDashBoardDataList.add(dashBoardData4);
     }
 
+    private void registerReceiver() {
+        getActivity().registerReceiver(mDashBoardReceiver, new IntentFilter(GDIDConstants.ACTION_DASHBOARD_RECEIVER));
+    }
+
+    private void unRegisterReceiver() {
+        if (mDashBoardReceiver != null) {
+            getActivity().unregisterReceiver(mDashBoardReceiver);
+        }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        unRegisterReceiver();
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.dashboard, container, false);
         getViewID(rootView);
-        getDashBoardData();
+        getUserName();
+//        getDashBoardData();
         updateTopView(rootView);
+        mDashBoardDataList = getActivity().getIntent().getParcelableArrayListExtra(GDIDConstants.KEY_DASHBOARD_DATA);
+        if (mDashBoardDataList == null) {
+            mDashBoardDataList = new ArrayList<DashBoardData>();
+        }
         mAdapter = new DashboardAdapter(getActivity());
         mListView.setAdapter(mAdapter);
         return rootView;
@@ -92,13 +134,19 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 
     private void getViewID(View aView) {
         mListView = (ListView) aView.findViewById(R.id.dashboardListID);
+//        mProgressBar = (RelativeLayout) aView.findViewById(R.id.progressViewID);
+//        mProgressBar.setVisibility(View.VISIBLE);
 
     }
     @Override
     public void onStart() {
         super.onStart();
-        mAdapter.notifyDataSetChanged();
+        if (mAdapter != null) {
+            mAdapter.notifyDataSetChanged();
+        }
+        registerReceiver();
     }
+
 
     @Override
     public void onClick(View view) {

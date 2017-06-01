@@ -3,6 +3,8 @@ package com.gdid.com.gdid.datamodel;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
+
 /**
  * Created by anupamsi on 1/30/2017.
  */
@@ -27,6 +29,8 @@ public class BugData implements Parcelable {
     public String mDefectDescription;
     public String mLocation;
     public String mWorkOrders;
+    public ArrayList<OrderData> mOrderList;
+
 
 
     public BugData() {

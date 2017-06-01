@@ -3,6 +3,10 @@ package com.gdid.activities;
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
@@ -14,6 +18,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.gdid.com.gdid.datamodel.DashBoardData;
+import com.gdid.com.gdid.services.SyncService;
 import com.gdid.com.gdid.utils.GDIDConstants;
 import com.gdid.fragments.BugListFragment;
 import com.gdid.fragments.DashboardFragment;
@@ -22,8 +28,12 @@ import com.gdid.fragments.OrderListFragment;
 import com.gdid.fragments.ScanBarcodeListFragment;
 import com.gdid.material_management.R;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity implements ListView.OnItemClickListener {
     private DrawerLayout mDrawerLayout;
+    private ArrayList<DashBoardData> mDashBoardDataList;
+    private int mCurrentViewSelected = -1;
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long aId) {
@@ -37,11 +47,32 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
     private CharSequence mDrawerTitle;
     private CharSequence mTitle;
     private String[] mMenuTitles;
+    private DataReceiver mDataReceiver;
+
+    private class DataReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            mDashBoardDataList = intent.getParcelableArrayListExtra(GDIDConstants.KEY_DASHBOARD_DATA);
+            mCurrentViewSelected = mCurrentViewSelected != -1 ? mCurrentViewSelected: -1;
+            selectItem(mCurrentViewSelected);
+        }
+    }
+
+    private void registerReceiver() {
+        registerReceiver(mDataReceiver, new IntentFilter(GDIDConstants.ACTION_DASHBOARD_RECEIVER));
+    }
+
+    private void unRegisterReceiver() {
+        if (mDataReceiver != null) {
+            unregisterReceiver(mDataReceiver);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+//        registerReceiver();
 
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setDisplayShowCustomEnabled(true);
@@ -94,6 +125,23 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+//        unRegisterReceiver();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    private void startSyncService() {
+        Intent syncIntent = new Intent();
+        syncIntent.setClass(this, SyncService.class);
+        getApplicationContext().startService(syncIntent);
+    }
+
+    @Override
     public void setTitle(CharSequence title) {
         mTitle = title;
 //        getActionBar().setTitle(mTitle);
@@ -101,6 +149,7 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
     }
 
     private void selectItem(int position) {
+        mCurrentViewSelected = position;
         Fragment fragment = null;
         // update the main content by replacing fragments
         switch (position) {

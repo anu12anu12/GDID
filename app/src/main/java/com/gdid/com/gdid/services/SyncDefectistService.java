@@ -15,10 +15,10 @@ import java.util.ArrayList;
 /**
  * Created by anupamsi on 4/7/2017.
  */
-public class SyncService extends IntentService {
+public class SyncDefectistService extends IntentService {
     private static final String TAG = "SyncService";
     private CancelObj mCancelDashBoardObj;
-    public SyncService() {
+    public SyncDefectistService() {
         super(TAG);
     }
 
@@ -26,15 +26,7 @@ public class SyncService extends IntentService {
     protected void onHandleIntent(Intent aIntent) {
         Log.d(TAG, "onHandleIntent");
         ArrayList<BugData> bugList = getBugList();
-        ArrayList<DashBoardData> arrayListDashBoardData = getDashBoardDataList();
-
         Intent intent = new Intent(GDIDConstants.ACTION_DASHBOARD_RECEIVER);
-        Log.d(TAG, "arrayListDashBoardData : " + arrayListDashBoardData);
-
-        if (arrayListDashBoardData != null) {
-            intent.putParcelableArrayListExtra(GDIDConstants.KEY_DASHBOARD_DATA, arrayListDashBoardData);
-        }
-
         if (bugList != null) {
             intent.putParcelableArrayListExtra(GDIDConstants.KEY_BUGLIST, bugList);
         }

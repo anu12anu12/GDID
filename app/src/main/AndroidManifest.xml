@@ -51,6 +51,8 @@
             </intent-filter>
         </activity>
         <service android:name="com.gdid.com.gdid.services.SyncService"/>
+        <service android:name="com.gdid.com.gdid.services.SyncDefectistService"/>
+
     </application>
 
 </manifest>

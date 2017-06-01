@@ -44,7 +44,11 @@ public class BugListFragment extends Fragment implements View.OnClickListener, A
         getViewID(rootView);
         getUserName();
         updateTopView(rootView);
-        mBugList = new ArrayList<BugData>();
+        mBugList = getActivity().getIntent().getParcelableArrayListExtra(GDIDConstants.KEY_BUGLIST);
+        if (mBugList == null) {
+            mBugList = new ArrayList<BugData>();
+        }
+
         mAdapter = new BugListAdapter(getActivity());
         mListView.addHeaderView(getListHeaderView());
         mListView.setAdapter(mAdapter);
@@ -163,7 +167,7 @@ public class BugListFragment extends Fragment implements View.OnClickListener, A
     @Override
     public void onStart() {
         super.onStart();
-        getBugList();
+//        getBugList();
         if (mAdapter != null) {
             mAdapter.notifyDataSetChanged();
         }
@@ -238,6 +242,8 @@ public class BugListFragment extends Fragment implements View.OnClickListener, A
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int aPosition, long l) {
+        if (aPosition == 0)
+            return;
         Intent loginIntent = new Intent();
         loginIntent.setClass(getActivity(), DefectDetailsActivity.class);
         loginIntent.putExtra(GDIDConstants.KEY_DEFECTDETAILS, mBugList.get((aPosition - 1)));
